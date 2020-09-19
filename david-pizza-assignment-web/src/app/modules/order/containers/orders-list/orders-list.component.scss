@@ -1,0 +1,27 @@
+.orders-list-content {
+  .total-price {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .currency-selector {
+    &-radio {
+      cursor: pointer;
+    }
+
+    &-label {
+      cursor: pointer;
+      margin-left: 1px;
+    }
+  }
+
+  fa-icon {
+    cursor: pointer;
+  }
+
+  .see-more {
+    color: #4287f5;
+    cursor: pointer;
+  }
+}

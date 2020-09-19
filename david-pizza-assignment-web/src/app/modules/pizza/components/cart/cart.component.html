@@ -1,0 +1,49 @@
+<app-dialog-content width="570" *ngIf="(cart$ | async) as cart">
+  <app-dialog-header title="Cart">
+    <app-dialog-close></app-dialog-close>
+  </app-dialog-header>
+  <div class="dialog-body">
+    <app-price-view [totalPrice]="getTotalPrice(cart)"></app-price-view>
+    <div class="pizzas-items" *ngFor="let key of getObjectKeys(cart)">
+      <ng-container *ngIf="cart[key] && cart[key].length && cart[key][0] as item">
+        <div class="pizzas-items-info">
+          <div class="pizzas-items-info-title">Quantity: {{cart[key].length}}</div>
+          <div class="pizza-cart-item-remove-container" (click)="removeFromCart(item.title)">
+            <span class="pizza-cart-item-remove">Remove </span>
+            <fa-icon [icon]="icons.minus"
+                     role="button"
+            ></fa-icon>
+          </div>
+        </div>
+        <div class="pizza-cart-item">
+          <div
+            class="pizza-cart-item-card">
+            <div class="pizza-cart-item-header">
+              <span>{{item.title}}</span>
+            </div>
+            <div class="pizza-cart-item-divider"></div>
+            <div>
+              <span>Type: {{item.type.toLocaleLowerCase()}}</span>
+            </div>
+            <div class="pizza-cart-item-divider"></div>
+            <div>
+              <span>Price: ${{item.price}}</span>
+            </div>
+            <div class="pizza-cart-item-image-container">
+              <img [src]="'assets/images/pizzas/' + item.type.toLocaleLowerCase() + '.png'"
+                   class="pizza-cart-item-image"/>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="group-button">
+    <button class="btn btn-primary" (click)="order()" [disabled]="isDisabled(cart)">
+      Confirm Order
+    </button>
+    <button class="btn btn-secondary" matDialogClose>
+      Cancel
+    </button>
+  </div>
+</app-dialog-content>

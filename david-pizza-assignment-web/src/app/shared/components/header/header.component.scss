@@ -1,0 +1,46 @@
+@import '../../../../assets/styles/variables';
+
+:host {
+  @include media-breakpoint-up(md) {
+    height: 56px;
+  }
+  height: 216px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+  span {
+    color: $color-grey-medium;
+    margin-right: 10px;
+  }
+
+  .btn-log-out {
+    background: none;
+    border: none;
+    outline: none;
+  }
+}
+
+.currency-selector {
+  color: $color-white;
+
+  &-radio {
+    cursor: pointer;
+  }
+
+  &-label {
+    cursor: pointer;
+    margin-left: 1px;
+  }
+}
+
+.total-price {
+  color: $color-white;
+}
+.cart-info-container  {
+  color: $color-white;
+  margin-right: 25px;
+  cursor: pointer;
+}

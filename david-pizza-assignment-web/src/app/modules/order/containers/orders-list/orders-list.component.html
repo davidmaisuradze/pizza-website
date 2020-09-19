@@ -1,0 +1,58 @@
+<div class="orders-list-content">
+  <div class="d-flex justify-content-center currency-selector mr-3">
+    <div class="currency-selector-radio mr-1 mb-3">
+      <input
+        id="cartDollarsCurrency"
+        type="radio"
+        [value]="currencyTypes.Dollars"
+        [checked]="currency === currencyTypes.Dollars"
+        (change)="onCurrencyChange($event)"
+      />
+      <label class="mb-0 currency-selector-label"
+             for="cartDollarsCurrency"
+      >Dollars
+      </label>
+    </div>
+
+    <div class="currency-selector-radio">
+      <input
+        id="cartEurosCurrency"
+        type="radio"
+        [value]="currencyTypes.Euros"
+        [checked]="currency === currencyTypes.Euros"
+        (change)="onCurrencyChange($event)"
+      />
+      <label class="mb-0 currency-selector-label"
+             for="cartEurosCurrency"
+      >Euros
+      </label>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Total Price</th>
+      <th>Address</th>
+      <th>Mobile</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="(orders$ | async) as orders">
+    <tr *ngFor="let order of orders; trackBy: ordersTrackByFn"
+    >
+      <td>{{order.name}}</td>
+      <td>{{order.surname}}</td>
+      <td>{{getTotalPriceTitle(order.totalPrice)}}</td>
+      <td>{{order.address}}</td>
+      <td>{{order.mobile}}</td>
+      <td class="see-more"
+          (click)="seeDetails(order.orderedPizzas)"
+      >
+        See More...
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,40 @@
+<app-dialog-content width="570">
+  <app-dialog-header title="Update Pizza">
+    <app-dialog-close></app-dialog-close>
+  </app-dialog-header>
+  <div class="dialog-body">
+    <div class="update-pizza-content">
+      <form [formGroup]="form">
+        <input
+          *fieldSet="formFields.title"
+          formControlName="title"
+          class="form-control"
+        />
+        <input
+          type="number"
+          *fieldSet="formFields.price"
+          formControlName="price"
+          class="form-control"
+        />
+        <select *fieldSet="formFields.type" formControlName="type" class="form-control">
+          <option></option>
+          <option *ngFor="let type of pizzaTypes" [value]="type.value">{{type.title}}</option>
+        </select>
+        <textarea
+          *fieldSet="formFields.description"
+          formControlName="description"
+          class="form-control"
+          rows="6"
+        ></textarea>
+      </form>
+    </div>
+  </div>
+  <div class="group-button">
+    <button class="btn btn-primary" (click)="save()">
+      Save
+    </button>
+    <button class="btn btn-secondary" matDialogClose>
+      Cancel
+    </button>
+  </div>
+</app-dialog-content>

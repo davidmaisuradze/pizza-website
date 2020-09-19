@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">Pizza Store</a>
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/home']">Home</a>
+      </li>
+      <li *ngIf="!!user" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/pizzas']">Pizzas</a>
+      </li>
+      <li *ngIf="!!user" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/orders-list']">Order History</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item d-flex justify-content-center align-items-center">
+        <ng-container *ngIf="!!user">
+          <div class="d-flex currency-selector mr-3">
+            <div class="currency-selector-radio mr-1">
+              <input
+                id="dollarsCurrency"
+                type="radio"
+                [value]="currencyTypes.Dollars"
+                [checked]="currency === currencyTypes.Dollars"
+                (change)="onCurrencyChange($event)"
+              />
+              <label class="mb-0 currency-selector-label"
+                     for="dollarsCurrency"
+              >Dollars
+              </label>
+            </div>
+
+            <div class="currency-selector-radio">
+              <input
+                id="eurosCurrency"
+                type="radio"
+                [value]="currencyTypes.Euros"
+                [checked]="currency === currencyTypes.Euros"
+                (change)="onCurrencyChange($event)"
+              />
+              <label class="mb-0 currency-selector-label"
+                     for="eurosCurrency"
+              >Euros
+              </label>
+            </div>
+          </div>
+          <div class="mr-2 total-price" *ngIf="(priceTitle$ | async) as priceTitle">Total Price: {{priceTitle}}</div>
+          <div class="cart-info-container" (click)="onCartClick()">
+            <fa-icon class="ml-2"
+                     [icon]="icons.cart"
+                     role="button"
+            ></fa-icon>
+            <span class="ml-1">{{cartCount}}</span>
+          </div>
+        </ng-container>
+        <div *ngIf="!user; else logout" class="d-flex justify-content-center align-items-center">
+          <a
+            class="nav-link"
+            [routerLink]="['/login']"
+          >
+            Log In
+          </a>
+          <a
+            class="nav-link"
+            [routerLink]="['/register']"
+          >
+            Register
+          </a>
+        </div>
+
+        <ng-template #logout>
+          <div class="user-info">
+            <span>Hello {{user.firstName}} {{user.lastName}}</span>
+            <button class="nav-link btn-log-out"
+                    (click)="onLogout()"
+            >
+              Log Out
+            </button>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>

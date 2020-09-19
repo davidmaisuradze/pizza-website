@@ -1,0 +1,10 @@
+<app-header [user]="user$ | async"
+            [cartCount]="cartCount"
+            [totalPrice]="totalPrice"
+            (logout)="logout()"
+            (cartClick)="cartClick()"
+></app-header>
+<app-content>
+  <router-outlet></router-outlet>
+</app-content>
+<app-footer></app-footer>

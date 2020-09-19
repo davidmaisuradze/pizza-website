@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center currency-selector mr-3">
+  <div class="currency-selector-radio mr-1">
+    <input
+      id="cartDollarsCurrency"
+      type="radio"
+      [value]="currencyTypes.Dollars"
+      [checked]="currency === currencyTypes.Dollars"
+      (change)="onCurrencyChange($event)"
+    />
+    <label class="mb-0 currency-selector-label"
+           for="cartDollarsCurrency"
+    >Dollars
+    </label>
+  </div>
+
+  <div class="currency-selector-radio">
+    <input
+      id="cartEurosCurrency"
+      type="radio"
+      [value]="currencyTypes.Euros"
+      [checked]="currency === currencyTypes.Euros"
+      (change)="onCurrencyChange($event)"
+    />
+    <label class="mb-0 currency-selector-label"
+           for="cartEurosCurrency"
+    >Euros
+    </label>
+  </div>
+  <div class="ml-3 total-price" *ngIf="(priceTitle$ | async) as priceTitle">Total Price: {{priceTitle}}</div>
+</div>

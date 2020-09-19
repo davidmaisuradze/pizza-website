@@ -1,0 +1,61 @@
+<div class="pizzas-content" *ngIf="user$ | async as user">
+  <button *ngIf="user.role === userRoles.Admin"
+          class="btn btn-primary mb-2"
+          (click)="addPizza()"
+  >Create New Pizza
+  </button>
+
+  <div class="see-cart-container" [class.w-100]="user.role !== userRoles.Admin">
+    <button class="btn btn-primary see-cart-button"
+            (click)="cartClick()">
+      Check The Cart
+    </button>
+  </div>
+
+  <div class="pizzas-container" *ngIf="(pizzas$ | async) as pizzas">
+    <div class="pizzas-title">Pizzas</div>
+    <div class="pizzas-items">
+      <div class="pizza-list-item">
+        <div *ngFor="let item of pizzas; trackBy: pizzasTrackByFn"
+             class="pizza-list-item-card"
+        >
+          <div class="pizza-list-item-header">
+            <span>{{item.title}}</span>
+            <div *ngIf="user.role === userRoles.Admin">
+              <fa-icon class="ml-2"
+                       [icon]="icons.edit"
+                       (click)="updatePizza(item)"
+                       role="button"
+              ></fa-icon>
+              <fa-icon class="ml-2"
+                       [icon]="icons.times"
+                       (click)="removePizza(item._id, item.title)"
+                       role="button"
+              ></fa-icon>
+            </div>
+          </div>
+          <div class="pizza-list-item-divider"></div>
+          <div>
+            <span>Type: {{item.type.toLocaleLowerCase()}}</span>
+          </div>
+          <div class="pizza-list-item-divider"></div>
+          <div>
+            <span>Price: ${{item.price}}</span>
+          </div>
+          <div class="pizza-list-item-image-container">
+            <img [src]="'assets/images/pizzas/' + item.type.toLocaleLowerCase() + '.png'"
+                 class="pizza-list-item-image"/>
+          </div>
+          <div class="pizza-list-item-description tooltip">
+            {{item.description | truncateText : 60}}
+            <span class="tooltip-text">{{item.description}}</span>
+          </div>
+          <div class="pizza-list-item-divider"></div>
+          <div class="d-flex">
+            <button class="btn btn-primary mb-2 mt-2 mr-auto ml-auto" (click)="addToCart(item)">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
