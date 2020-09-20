@@ -2,28 +2,28 @@
   <div class="d-flex justify-content-center currency-selector mr-3">
     <div class="currency-selector-radio mr-1 mb-3">
       <input
-        id="cartDollarsCurrency"
+        id="ordersListDollarsCurrency"
         type="radio"
         [value]="currencyTypes.Dollars"
         [checked]="currency === currencyTypes.Dollars"
         (change)="onCurrencyChange($event)"
       />
       <label class="mb-0 currency-selector-label"
-             for="cartDollarsCurrency"
+             for="ordersListDollarsCurrency"
       >Dollars
       </label>
     </div>
 
     <div class="currency-selector-radio">
       <input
-        id="cartEurosCurrency"
+        id="ordersListEurosCurrency"
         type="radio"
         [value]="currencyTypes.Euros"
         [checked]="currency === currencyTypes.Euros"
         (change)="onCurrencyChange($event)"
       />
       <label class="mb-0 currency-selector-label"
-             for="cartEurosCurrency"
+             for="ordersListEurosCurrency"
       >Euros
       </label>
     </div>

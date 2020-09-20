@@ -1,6 +1,9 @@
 <div class="pizzas-content">
   <div class="order-pizza-content">
-    <app-price-view *ngIf="(cart$ | async) as cart" [totalPrice]="getTotalPrice(cart)"></app-price-view>
+    <app-price-view *ngIf="(cart$ | async) as cart"
+                    [totalPrice]="getTotalPrice(cart)"
+                    [idName]="'orders'"
+    ></app-price-view>
     <form [formGroup]="form">
       <input
         *fieldSet="formFields.name"

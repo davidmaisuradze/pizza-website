@@ -3,7 +3,9 @@
     <app-dialog-close></app-dialog-close>
   </app-dialog-header>
   <div class="dialog-body">
-    <app-price-view [totalPrice]="getTotalPrice(cart)"></app-price-view>
+    <app-price-view [totalPrice]="getTotalPrice(cart)"
+                    [idName]="'order-details'"
+    ></app-price-view>
     <div class="pizzas-items" *ngFor="let key of getObjectKeys(cart)">
       <ng-container *ngIf="cart[key] && cart[key].length && cart[key][0] as item">
         <div class="pizzas-items-info">
