@@ -70,3 +70,7 @@ body { margin: 0; font-family: Arial, sans-serif; }
 app-dialog-content {
   margin-top: 50px;
 }
+
+.cdk-overlay-pane {
+  overflow: scroll;
+}
